@@ -36,7 +36,7 @@ We use a hybrid Retrieval-Augmented Generation (RAG) pipeline:
 | Embeddings      | SentenceTransformers (all-MiniLM-L6-v2) |
 | LLM             | Phi-3 (Ollama)                          |
 | Data Processing | Pandas                                  |
-| UI (Optional)   | Streamlit                               |
+| UI              | Streamlit                               |
 
 ## 🔍 Key Features
 ---
