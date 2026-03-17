@@ -25,39 +25,6 @@ We use a hybrid Retrieval-Augmented Generation (RAG) pipeline:
 3. Context Construction
 4. LLM-based Answer Generation
 
-## 🏗️ System Architecture
-
-```mermaid
-flowchart TD
-    A[User Query] --> B[Query Analyzer]
-    B --> C{Query Type}
-    
-    C -->|Analytical| D[Structured Filtering]
-    C -->|Semantic| E[Vector Search (ChromaDB)]
-    
-    D --> F[Hybrid Retrieval]
-    E --> F
-    
-    F --> G[Top-K Trial Results]
-    G --> H[Context Builder]
-    H --> I[LLM (Phi-3 / OpenAI)]
-    I --> J[Final Answer]
-
-
----
-
-# 🔄 6. Data Pipeline
-
-```markdown
-## 🔄 Data Pipeline
-
-```mermaid
-flowchart LR
-    A[Raw Clinical Trial Data] --> B[Text Chunking]
-    B --> C[Embedding Generation]
-    C --> D[ChromaDB Storage]
-
-
 
 ## ⚙️ Tech Stack
 ---
