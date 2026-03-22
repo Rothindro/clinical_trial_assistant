@@ -7,7 +7,7 @@ The Clinical Trial Intelligence Assistant is an AI-powered system designed to re
 
 It leverages:
 - Vector databases (ChromaDB)
-- Sentence embeddings (SentenceTransformers (all-MiniLM-L6-v2))
+- Sentence embeddings (SentenceTransformers (PubMedBERT))
 - Query analysis for intent detection
 - Retrieval-Augmented Generation (RAG) with LLMs
 
@@ -33,8 +33,8 @@ We use a hybrid Retrieval-Augmented Generation (RAG) pipeline:
 |-----------------|-----------------------------------------|
 | Language        | Python                                  |
 | Vector DB       | ChromaDB                                |
-| Embeddings      | SentenceTransformers (all-MiniLM-L6-v2) |
-| LLM             | Phi-3 (Ollama)                          |
+| Embeddings      | SentenceTransformers (PubMedBERT)       |
+| LLM             | Llama 3.1 8B Instant (Groq)             |
 | Data Processing | Pandas                                  |
 | UI              | Streamlit                               |
 
