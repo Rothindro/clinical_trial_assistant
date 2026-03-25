@@ -7,7 +7,7 @@ The Clinical Trial Intelligence Assistant is an AI-powered system designed to re
 
 It leverages:
 - Vector databases (ChromaDB)
-- Sentence embeddings (SentenceTransformers (PubMedBERT))
+- Sentence embeddings (SentenceTransformers (all-MiniLM-L6-v2))
 - Query analysis for intent detection
 - Retrieval-Augmented Generation (RAG) with LLMs
 
