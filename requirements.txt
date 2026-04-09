@@ -1,8 +1,7 @@
 pandas
 chromadb
-sentence-transformers
-transformers
-torch
+requests
 streamlit
 scikit-learn
 groq
+python-dotenv
