@@ -1,53 +1,50 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
-
 import streamlit as st
 import pandas as pd
 from scripts.driver import process_user_query
 
-# ── Page config ───────────────────────────────────────────────────────────────
+# Page config
 st.set_page_config(
     page_title="Clinical Trial RAG Assistant",
     page_icon="🧬",
     layout="centered"
 )
 
-# ── Cache model + ChromaDB loading ───────────────────────────────────────────
+# ChromaDB loading
 @st.cache_resource
 def initialize_system():
     try:
-        from scripts.retrieve_trials import model, collection
-        print("✅ Model and collection loaded")
-        return model, collection
+        from scripts.retrieve_trials import collection
+        print("✅ ChromaDB loaded")
+        return collection
     except Exception as e:
         print("❌ Error loading system:", e)
         raise e
 
 initialize_system()
 
-# ── Example queries ───────────────────────────────────────────────────────────
 EXAMPLE_QUERIES = [
     "How many trials are in Phase 2 with pembrolizumab?",
-    "Tell me about a BMS sponsored Phase 3 trial",
+    "Tell me about a Novartis sponsored Phase 3 trial",
     "How many completed trials involve immunotherapy?",
     "Give me details about a recruiting trial for NSCLC",
-    "How many trials have enrollment greater than 500?",
 ]
 
-# ── Session state init ────────────────────────────────────────────────────────
+# Session state init
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
 if "last_trials" not in st.session_state:
     st.session_state.last_trials = []
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header
 st.title("🧬 Clinical Trial RAG Assistant")
 st.caption("Powered by all-MiniLM-L6-v2 + Llama 3.1 8B via Groq | NSCLC Trials Database")
 st.divider()
 
-# ── Example queries on homepage ───────────────────────────────────────────────
+# Example queries on homepage
 if not st.session_state.chat_history:
     st.markdown("#### 💡 Try asking:")
     cols = st.columns(2)
@@ -57,23 +54,23 @@ if not st.session_state.chat_history:
                 st.session_state.pending_query = example
                 st.rerun()
 
-# ── Chat history display ──────────────────────────────────────────────────────
+# Chat history display
 for message in st.session_state.chat_history:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# ── Handle example query click ────────────────────────────────────────────────
+# Handle example query click 
 if "pending_query" in st.session_state:
     user_input = st.session_state.pop("pending_query")
 else:
     user_input = None
 
-# ── Chat input ────────────────────────────────────────────────────────────────
+# Chat input 
 typed_input = st.chat_input("Ask about NSCLC clinical trials...")
 if typed_input:
     user_input = typed_input
 
-# ── Process query ─────────────────────────────────────────────────────────────
+# Process query
 if user_input:
 
     # Show user message
@@ -125,7 +122,7 @@ if user_input:
         "content": answer
     })
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+# Sidebar
 with st.sidebar:
     st.markdown("### 🧬 About")
     st.info(
