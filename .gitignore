@@ -14,8 +14,8 @@ __pycache__/
 #data/raw/
 
 # Vector database
-vector_db/
-chroma/
+#vector_db/
+#chroma/
 
 # OS files
 .DS_Store
